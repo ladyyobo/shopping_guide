@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-offset-10 col-md-2">
-    <a href="?page=add_category">
-    <button type="button" class="btn btn-block btn-success btn-sm">Add Category</button>
+    <a href="?page=add_product_effect">
+    <button type="button" class="btn btn-block btn-success btn-sm">Add Product Effect</button>
   </a>
 
 
@@ -10,7 +10,7 @@
 </div>
 <br>
 <?php
-    $categories= Category::find_all();
+    $products= Product::find_all();
 
 ?>
 <div class="box">
@@ -22,30 +22,22 @@
                   <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 181.7px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID</th>
 
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 231.25px;" aria-label="Browser: activate to sort column ascending">Name</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 196.717px;" aria-label="Platform(s): activate to sort column ascending">Associated Products</th>
-
-
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 196.717px;" aria-label="Platform(s): activate to sort column ascending">Categories</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 156.183px;" aria-label="Engine version: activate to sort column ascending">Manufacturer</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 112.15px;" aria-label="CSS grade: activate to sort column ascending">Image</th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 112.15px;" aria-label="CSS grade: activate to sort column ascending">Operations</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php
-                    foreach ($categories as $category) { ?>
+                    foreach ($products as $product) { ?>
                       <tr role="row" class="odd">
-                        <td class="sorting_1"><?php echo $category->id; ?></td>
-                        <td><?php echo $category->name; ?></td>
-                        <td><?php echo ""; ?></td>
-                        <td>
-                          <a href="?page=edit_category&cat_id=<?php echo $category->id;?>">
-                          Edit
-                        </a>
-
-                        <a href="?page=delete_category&cat_id=<?php echo $category->id;?>">
-                         Delete
-                      </a>
-
-
-                        </td>
+                        <td class="sorting_1"><?php echo $product->id; ?></td>
+                        <td><?php echo $product->name ?></td>
+                        <td><?php echo Category::find_by_id($product->cat_id)->name; ?></td>
+                        <td><?php echo $product->manufacturer; ?></td>
+                        <td><?php echo $product->image; ?></td>
+                        <td>A</td>
                       </tr>
 
                   <?php     } ?>

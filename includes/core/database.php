@@ -1,5 +1,5 @@
 <?php
-//require_once(LIB_PATH.DS.'core'.DS.'config.php');
+require_once('config.php');
 class MySQLDatabase{
   //db connection
   private $connection;

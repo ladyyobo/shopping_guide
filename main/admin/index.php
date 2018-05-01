@@ -1,26 +1,82 @@
+<?php include('../../includes/initialize.php'); ?>
 <?php
-    $page = $_GET['page'];
+    // todo:: default
+
+    $page = isset($_GET['page']) ? $_GET['page'] : 'man_prod';
 
     switch ($page) {
-      case 'man_prod':
-        $main_content = "./page/products.php";
-        break;
 
-        case 'man_effect':
-          $main_content = "";
-          break;
+      case 'delete_effect':
+      $effect = Effect::find_by_id($_GET['effect_id']);
+      $effect->delete();
 
-          case 'man_prod_effect':
-            $main_content = "Manage product effects Clicked";
+      case 'add_nutri_value':
+      $title = "Add Nutritional Value";
+         $main_content = "./page/add_nutri_value.php";
+         break;
+
+         case 'edit_product':
+         $title = "Edit Product Information";
+            $main_content = "./page/edit_product.php";
             break;
 
+
+      case 'man_effect':
+      $title = "Manage Effect";
+         $main_content = "./page/effects.php";
+         break;
+
+         case 'add_product':
+         $title = "Registering Product";
+            $main_content = "./page/add_product.php";
+            break;
+
+            case 'add_product_effect':
+            $title = "Registering Product Effect";
+               $main_content = "./page/add_product_effect.php";
+               break;
+
+            case 'add_effect':
+            $title = "Registering Effect";
+               $main_content = "./page/add_effect.php";
+             break;
+
+            case 'edit_category':
+            $title = "Editing Category";
+               $main_content = "./page/edit_category.php";
+               $category = Category::find_by_id($_GET['cat_id']);
+               break;
+
+               case 'edit_effect':
+               $title = "Editing Effect";
+                  $main_content = "./page/edit_effect.php";
+                  $effect = Effect::find_by_id($_GET['effect_id']);
+                  break;
+
+            case 'add_category':
+            $title = "Registering Category";
+               $main_content = "./page/add_category.php";
+               break;
+
+          case 'man_prod_effect':
+          $title = "Manage Product Effects";
+            $main_content = "./page/product_effects.php";
+            break;
+
+              case 'delete_category':
+              $category = Category::find_by_id($_GET['cat_id']);
+              $category->delete();
+
             case 'man_categories':
-              $main_content = "Manage categories Clicked";
+            $title = "Manage Categories";
+              $main_content = "./page/categories.php";
               break;
 
-      default:
-        # code...
-        break;
+              case 'man_prod':
+              default:
+              $title = "Manage Products";
+                   $main_content = "./page/products.php";
+              break;
     }
 
 
@@ -45,6 +101,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- DataTables -->
   <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
+  <script src="bower_components/functions.js"></script>
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
@@ -303,13 +360,13 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Page Header
-        <small>Optional description</small>
+        <?php echo $title; ?>
+        <!--small>Optional description</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
         <li class="active">Here</li>
-      </ol>
+      </ol-->
     </section>
 
     <!-- Main content -->

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-offset-10 col-md-2">
-    <a href="?page=add_category">
-    <button type="button" class="btn btn-block btn-success btn-sm">Add Category</button>
+    <a href="?page=add_effect">
+    <button type="button" class="btn btn-block btn-success btn-sm">Add Effect</button>
   </a>
 
 
@@ -10,7 +10,8 @@
 </div>
 <br>
 <?php
-    $categories= Category::find_all();
+   //retrieving all effects from the db
+    $effects= Effect::find_all();
 
 ?>
 <div class="box">
@@ -21,31 +22,29 @@
                 <tr role="row">
                   <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 181.7px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID</th>
 
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 231.25px;" aria-label="Browser: activate to sort column ascending">Name</th>
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 196.717px;" aria-label="Platform(s): activate to sort column ascending">Associated Products</th>
-
-
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 231.25px;" aria-label="Browser: activate to sort column ascending">Description</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 196.717px;" aria-label="Platform(s): activate to sort column ascending">Type</th>
+                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 156.183px;" aria-label="Engine version: activate to sort column ascending">Associated Products</th>
                   <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 112.15px;" aria-label="CSS grade: activate to sort column ascending">Operations</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php
-                    foreach ($categories as $category) { ?>
+                     //displaying information for each effect
+                    foreach ($effects as $effect) { ?>
                       <tr role="row" class="odd">
-                        <td class="sorting_1"><?php echo $category->id; ?></td>
-                        <td><?php echo $category->name; ?></td>
+                        <td class="sorting_1"><?php echo $effect->id; ?></td>
+                        <td><?php echo $effect->description ?></td>
+
+                        <td><?php echo $effect->type; ?></td>
                         <td><?php echo ""; ?></td>
-                        <td>
-                          <a href="?page=edit_category&cat_id=<?php echo $category->id;?>">
+                        <td>  <a href="?page=edit_effect&effect_id=<?php echo $effect->id;?>">
                           Edit
                         </a>
-
-                        <a href="?page=delete_category&cat_id=<?php echo $category->id;?>">
+                        <a href="?page=delete_effect&effect_id=<?php echo $effect->id;?>">
                          Delete
                       </a>
-
-
-                        </td>
+                     </td>
                       </tr>
 
                   <?php     } ?>

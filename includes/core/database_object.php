@@ -31,7 +31,7 @@ class DatabaseObject{
   }
 
   //used to update an object by setting the info in the db to
-  protected function update(){
+  public function update(){
   //the new info on the object and saving it to the database
     global $database;
     $attributes=static::sanitized_attributes();
